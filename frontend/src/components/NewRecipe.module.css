@@ -1,0 +1,44 @@
+.form{
+margin: auto;
+color: rgb(62, 62, 62);
+  font-size: .75rem;
+  border-radius: 10px;
+  min-height: 300px;
+  min-width: 300px;
+  background: rgb(174,238,235);
+  background: linear-gradient(0deg, rgba(40,153,68,0.7346938775510203) 0%, rgba(232,232,233,0.7463556851311953) 100%);  padding-top: 0%;
+
+}
+.input{
+  height: 50px;
+  width: 250px;
+  margin: 7px;
+  margin-left: 20px;
+}
+.button{
+  padding: 1px;
+  margin: 3px;
+  width: 80%;
+  height: 30px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin-left: 25px;
+
+}
+
+.button {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button:hover {
+  background-color: #4CAF50;
+  color: white;
+}

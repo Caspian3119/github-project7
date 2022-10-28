@@ -1,0 +1,132 @@
+body {
+  background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% );    font-family: "Raleway", sans-serif;
+    color: #151515;
+  }
+  a {
+    color: black;
+    font-weight: 600;
+    font-size: 0.85em;
+    text-decoration: none;
+  }
+  label {
+    color: #49111c;
+    font-weight: 600;
+    font-size: 1em;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  input:focus {
+    outline: none;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .form {
+    display: flex;
+    width: auto;
+    height: 700px;
+    background-image: linear-gradient( 90.5deg,  rgba(255,207,139,0.50) 1.1%, rgba(255,207,139,1) 81.3% );    margin: 15px;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0px 10px 25px 5px #0000000f;
+  }
+  .SignInSection {
+    padding: 30px;
+  }
+  .SignInSection h6 {
+    margin-top: 0px;
+    font-size: 0.75em;
+  }
+  .SignInSection h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-family: 'Rouge Script';
+    font-size: 50px;
+    line-height: 48px;
+    text-align: center;
+    color: rgb(92, 10, 10);
+    position: relative;
+  }
+  .SignInSection h1:after {
+    position: absolute;
+    content: "";
+    height: 5px;
+    bottom: -15px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 100px;
+    background: #d4d4d4;
+    background: -webkit-linear-gradient(to right, #f2f4f3, #b6c454);
+    background: linear-gradient(to right,  #ecc829, #fdff83);
+    -o-transition: 0.25s;
+    -ms-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -webkit-transition: 0.25s;
+    transition: 0.25s;
+  }
+  .SignInSection h1:hover:after {
+    width: 200px;
+  }
+  .SignInSection p {
+    text-align: center;
+    font-size: 0.85em;
+  }
+  .formField{
+    display: block;
+    width: 300px;
+    margin: 10px auto;
+  }
+  .formField label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .formField input[type="email"],
+  input[type="password"], input[type="text"] {
+    width: -webkit-fill-available;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e8e8e8;
+  }
+  .formField input::placeholder {
+    color: #e8e8e8;
+  }
+  .formField input:focus {
+    border: 1px solid #AE00FF;
+  }
+  .formOptions {
+    display: block;
+    margin: auto;
+    width: 300px;
+  }
+  .formOptions a {
+    float: right;
+    text-decoration: none;
+  }
+  .btn {
+    padding: 15px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: 900;
+    width: 100%;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    background: -webkit-linear-gradient(to right, #E100FF, #7F00FF);
+    background: linear-gradient(90deg, rgba(187,47,47,1) 0%, rgba(228,163,70,1) 46%);
+    box-shadow: 0px 5px 15px 5px #81134640;
+    color: rgb(103, 35, 35);
+  }
+
+
+  .login{
+    margin-left: 25px;
+    font-size:2rem;
+    position: absolute;
+    padding-top: 50px;
+  }
+  

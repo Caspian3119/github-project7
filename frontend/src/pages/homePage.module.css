@@ -1,0 +1,12 @@
+*{
+  margin:0;
+  padding:0;
+}
+.body{
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+  grid-gap: 2rem;
+  justify-content: center;
+}
