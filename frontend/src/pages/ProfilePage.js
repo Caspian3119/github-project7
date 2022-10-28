@@ -65,6 +65,13 @@ const reducer = (state, action) => {
       return { ...state, recipes: updatedRecipe, editForm: false };
     }
 
+    case "DELETE-ITEM": {
+      const updatedRecipe = state.recipes.filter( (item) => {
+        return item._id !== action.payload.id;
+      });
+      return { ...state, recipes: updatedRecipe };
+    }
+
     default:
       break;
   }
@@ -75,6 +82,7 @@ const ProfilePage = ({
   hideNewRecipeForm,
   newRecipe,
   addRecipe,
+  deleteRecipe,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -111,6 +119,14 @@ const ProfilePage = ({
       });
   }, []);
 
+  useEffect(() => {
+    const activeToken = localStorage.removeItem("token");
+    axios
+      .delete("http://localhost:8080/api/v1/recipes", {
+        activeToken: activeToken,
+        })
+      }, []);
+
   const handleAddRecipe = (newItem) => {
     dispatch({ type: "ADD-RECIPE-SUBMIT", payload: { newItem } });
   };
@@ -130,6 +146,10 @@ const ProfilePage = ({
     dispatch({ type: "TOGGLE-EDIT-ITEM-FORM", payload: { editForm: false } });
   };
 
+  const deleteItem = (id) => {
+    dispatch({ type: "DELETE-ITEM", payload: { id } });
+  };
+
   const listItems = state.recipes.map((item, index) => (
     //data transformation
     <RecipeTileProfile
@@ -140,6 +160,7 @@ const ProfilePage = ({
       ingredients={item.ingredients}
       editClick={handleEditClick}
       viewRecipe={handleViewRecipe}
+      deleteItem={deleteItem}
       //{...state.viewRecipe}
     />
   ));
@@ -174,6 +195,7 @@ const ProfilePage = ({
       ) : (
         ""
       )}
+        <button className={style.button} onClick={deleteRecipe}></button>
     </div>
   );
 };

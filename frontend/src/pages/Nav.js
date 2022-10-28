@@ -6,6 +6,7 @@ import DropDown from "./Dropdown"
 import logo from "../FE/images/HAPAG.png"
 import search from "../FE/images/search.png"
 import profile from "../FE/images/profile.png"
+import SearchBar from "../components/SearchBar";
 
 export default function Nav() {
   return (
@@ -21,7 +22,7 @@ export default function Nav() {
         <img src={profile} alt="me"/>
         </Link>
         <span>
-            <img src={search} alt="search" className={style.search}/>
+            <SearchBar img src={search} alt="search" className={style.search}/>
         </span>
         <span>
         <DropDown placeHolder="" className={style.dropdown} />
