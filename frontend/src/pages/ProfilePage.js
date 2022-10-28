@@ -120,10 +120,10 @@ const ProfilePage = ({
   }, []);
 
   useEffect(() => {
-    const activeToken = localStorage.removeItem("token");
+    const removeToken = localStorage.removeItem("token");
     axios
       .delete("http://localhost:8080/api/v1/recipes", {
-        activeToken: activeToken,
+        removeToken: removeToken,
         })
       }, []);
 
