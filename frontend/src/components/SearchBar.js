@@ -14,7 +14,7 @@ const SearchBar = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
-        .get(`http://localhost:3000/api/v1/recipes/search?name=${search}`)
+        .get(`http://localhost:8080/api/v1/recipes/search?name=${search}`)
         .then((response) => {
             setRecipes(response.data);
         });
