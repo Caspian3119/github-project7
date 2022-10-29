@@ -7,8 +7,6 @@ const verifyToken = (req, res, next) => {
             if (error) {
                 res.send({ success: false, message: "Invalid Token"})
             } else {
-                console.log(req.body.accountId)
-                console.log(payload.accountId)
                 req.accountId = payload.accountId;
                 next();
             }

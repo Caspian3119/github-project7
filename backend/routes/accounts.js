@@ -78,9 +78,7 @@ router.post("/login", (req, res) => {
 
 // GET ACTIVE ACCOUNT
 router.post("/active", verify, (req, res) => {
-    console.log(req.accountId + "sample")
     Account.findOne({ _id: req.accountId }).then((details) => {
-        //console.log(data);
         res.send({success: true, data: details});
     });
 });

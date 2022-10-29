@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function Login() {
 
-    const {setToken, token} = useAuth()
+    const {setToken, token} = useAuth();
 
     // VARIABLES DECLARATION
     const [email, setEmail] = useState("")
@@ -51,8 +51,6 @@ function Login() {
             });
         }
     }
-
-    
 
   return (
     <section className={style.login}>

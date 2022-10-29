@@ -90,7 +90,7 @@ const ProfilePage = ({
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+/*
   useEffect(() => {
     axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
       dispatch({
@@ -99,33 +99,32 @@ const ProfilePage = ({
       });
     });
   }, []);
-
+*/
   useEffect(() => {
     const activeToken = localStorage.getItem("token");
-    axios
-      .post("http://localhost:8080/api/v1/accounts/active", {
+    axios.post("http://localhost:8080/api/v1/accounts/active", {
         activeToken: activeToken,
       })
       .then((res) => {
         if (res.data.success) {
-          //console.log(res.data.data);
-          setAccountId(res.data._id);
-          setUsername(res.data.username);
-          setEmail(res.data.email);
-          setPassword(res.data.password);
+          // console.log(res.data.data);
+          setAccountId(res.data.data._id);
+          setUsername(res.data.data.username);
+          setEmail(res.data.data.email);
+          setPassword(res.data.data.password);
         } else {
-          alert(res.data.message);
+          alert(res.data.data.message);
         }
       });
-  }, []);
+    
+    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
+        dispatch({
+            type: "RECIPES",
+            payload: response.data,
+        });
+    })
 
-  useEffect(() => {
-    const removeToken = localStorage.removeItem("token");
-    axios
-      .delete("http://localhost:8080/api/v1/recipes", {
-        removeToken: removeToken,
-        })
-      }, []);
+  }, []);
 
   const handleAddRecipe = (newItem) => {
     dispatch({ type: "ADD-RECIPE-SUBMIT", payload: { newItem } });
@@ -150,7 +149,13 @@ const ProfilePage = ({
     dispatch({ type: "DELETE-ITEM", payload: { id } });
   };
 
-  const listItems = state.recipes.map((item, index) => (
+  // SHOW RECIPE CREATED BY LOGGED IN USER //
+  let userRecipe = state.recipes.filter((recipeItem) => {
+    return recipeItem.created_by === accountId
+  })
+
+  // USER RECIPES TO BE SHOWN IN CARD UI //
+  const listItems = userRecipe.map((item, index) => (
     //data transformation
     <RecipeTileProfile
       key={index}
@@ -165,17 +170,20 @@ const ProfilePage = ({
     />
   ));
 
+
+
   return (
     <div>
       <Nav />
       <div className={style.header}>
         <img src={profileImage} alt="profile" className={style.profile} />
-        <h1> Azealia's Recipes</h1>
+        <h1> {username}'s Recipes</h1>
         {newRecipe ? (
           <NewRecipe
             submit={handleAddRecipe}
             hideNewRecipeForm={hideNewRecipeForm}
             showAddRecipeForm={showAddRecipeForm}
+            accountId={accountId}
           />
         ) : (
           <button className={style.button} onClick={showAddRecipeForm}>

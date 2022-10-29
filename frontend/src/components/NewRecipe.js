@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./NewRecipe.module.css";
 import axios from "axios"
 
-const NewRecipe = (props) => {
+const NewRecipe = ({props, accountId}) => {
   const [recipe, setRecipe] = useState({
     name: "",
     description: "",
     ingredients: "",
     procedure: "",
+    created_by: accountId,
   });
 
   const onChange = (e) => {

@@ -132,11 +132,13 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/" element={<PrivateRoutes />} > 
                         <Route exact path="/" element={<Home listRecipes={listRecipes}/>}/>
-                        <Route path="profile" element={<Profile 
-                                showAddRecipeForm={showAddRecipeForm}
-                                hideNewRecipeForm={hideNewRecipeForm}
-                                newRecipe={newRecipe}
-                                addRecipe={addRecipe}
+                        <Route 
+                            path="profile" 
+                            element={<Profile 
+                            showAddRecipeForm={showAddRecipeForm}
+                            hideNewRecipeForm={hideNewRecipeForm}
+                            newRecipe={newRecipe}
+                            addRecipe={addRecipe}
                         />} />
                     </Route>
                 </Routes>

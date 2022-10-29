@@ -1,10 +1,13 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import style from "./dropdown.module.css";
 
 export default function Dropdown({ placeHolder }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(placeHolder);
+
+  const navigate = useNavigate();
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -12,6 +15,13 @@ export default function Dropdown({ placeHolder }) {
     setSelected(e.target.value);
     setIsOpen(false);
   };
+
+  const handleLogout = (e) => {
+    setSelected(e.target.value);
+    localStorage.removeItem('token');
+    navigate('/login');
+    setIsOpen(false);
+  }
 
   return (
     <div className={style.dropdown}>
@@ -23,7 +33,7 @@ export default function Dropdown({ placeHolder }) {
         <div className={style.dropdownList}>
           <a className={style.dropdownLinks} onClick={handleSelect}>Edit Profile</a>
           <a className={style.dropdownLinks} onClick={handleSelect}>Edit Password</a>
-          <a className={style.dropdownLinks} onClick={handleSelect}>Logout</a>
+          <a className={style.dropdownLinks} onClick={handleLogout}>Logout</a>
         </div>
       )}
     </div>
