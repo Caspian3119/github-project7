@@ -89,7 +89,6 @@ const EditForm = ({
       <div className={style.modal}>
         <label className={style.modalBg} htmlFor="modal-edit"></label>
         <div className={style.modalInner}>
-          <label className={style.modalClose} htmlFor="modal-edit"></label>
           <h2>Edit Recipe</h2>
           <form>
             <label>Recipe Name:</label> <br />

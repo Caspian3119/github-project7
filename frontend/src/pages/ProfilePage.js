@@ -6,14 +6,16 @@ import { FcPlus } from "react-icons/fc";
 import NewRecipe from "../components/NewRecipe";
 import RecipeTileProfile from "../components/RecipeTileProfile";
 import EditRecipeForm from "../components/EditRecipeForm";
+import ViewRecipe from "../components/ViewRecipe";
 import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
 
 const initialState = {
   recipes: [],
   editForm: false,
+  viewRecipeForm: false,
   editRecipe: [],
-  //viewRecipe:[]
+  viewRecipe: [],
 };
 
 const reducer = (state, action) => {
@@ -22,6 +24,11 @@ const reducer = (state, action) => {
       return state.editForm
         ? { ...state, editForm: false }
         : { ...state, editForm: true };
+
+    case "TOGGLE-VIEW-RECIPE":
+      return state.viewRecipeForm
+        ? { ...state, viewRecipeForm: false }
+        : { ...state, viewRecipeForm: true };
 
     case "RECIPES": {
       return {
@@ -52,7 +59,7 @@ const reducer = (state, action) => {
         (item) => item._id === action.payload.id
       );
       const currentRecipe = state.recipes[recipe];
-      return { ...state, viewRecipe: currentRecipe };
+      return { ...state, viewRecipe: currentRecipe, viewRecipeForm: true };
     }
 
     case "SAVE-EDIT-FORM": {
@@ -72,12 +79,6 @@ const reducer = (state, action) => {
       });
       return { ...state, recipes: updatedRecipe };
     }
-    case "LATEST-RECIPE": {
-      const sortedRecipes = state.recipes.sort((a, b) => {
-        return new Date(b.created_at) - new Date(a.created_at);
-      });
-      return { ...state, recipes: sortedRecipes };
-    }
 
     default:
       break;
@@ -91,11 +92,11 @@ const ProfilePage = ({
   deleteRecipe,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   const [accountId, setAccountId] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
@@ -132,19 +133,6 @@ const ProfilePage = ({
     });
   }, []);
 
-  useEffect(() => {
-    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
-      dispatch({
-        type: "LATEST-RECIPE",
-        payload: response.data,
-      });
-    });
-  }, []);
-
-
-
-
-
   const handleAddRecipe = (newItem) => {
     dispatch({ type: "ADD-RECIPE-SUBMIT", payload: { newItem } });
   };
@@ -154,7 +142,7 @@ const ProfilePage = ({
 
   const handleViewRecipe = (id) => {
     dispatch({ type: "TOGGLE-RECIPE", payload: { id } });
-    console.log(id)
+    console.log(id);
   };
 
   const editCurrItem = (editItem) => {
@@ -165,23 +153,21 @@ const ProfilePage = ({
     dispatch({ type: "TOGGLE-EDIT-ITEM-FORM", payload: { editForm: false } });
   };
 
+  const cancelViewRecipe = () => {
+    dispatch({
+      type: "TOGGLE-VIEW-RECIPE",
+      payload: { viewRecipeForm: false },
+    });
+  };
+
   const deleteItem = (id) => {
     dispatch({ type: "DELETE-ITEM", payload: { id } });
   };
-
-  const latestRecipe = (id) => {
-    dispatch({ type: "LATEST-RECIPE", payload: { id } });
-  };
-
- 
 
   // SHOW RECIPE CREATED BY LOGGED IN USER //
   let userRecipe = state.recipes.filter((recipeItem) => {
     return recipeItem.created_by === accountId;
   });
-
- 
-
 
   // USER RECIPES TO BE SHOWN IN CARD UI //
   const listItems =
@@ -190,24 +176,30 @@ const ProfilePage = ({
     ) : (
       userRecipe.map((item, index) => (
         //data transformation
-       
-        <RecipeTileProfile
-          key={index}
-          id={item._id}
-          name={item.name}
-          procedure={item.procedure}
-          ingredients={item.ingredients}
-          description={item.description}
-          editClick={handleEditClick}
-          viewRecipe={handleViewRecipe}
-          deleteItem={deleteItem}
-          latestRecipe={latestRecipe}
-          //{...state.viewRecipe}
-        />
-        ))
+        <>
+          <RecipeTileProfile
+            key={index}
+            id={item._id}
+            name={item.name}
+            description={item.description}
+            editClick={handleEditClick}
+            viewRecipe={handleViewRecipe}
+            deleteItem={deleteItem}
+          />
+          {state.viewRecipeForm ? (
+            <ViewRecipe
+              name={item.name}
+              procedure={item.procedure}
+              ingredients={item.ingredients}
+              cancel={cancelViewRecipe}
+              {...state.viewRecipe}
+            />
+          ) : (
+            ""
+          )}
+        </>
+      ))
     );
-  
-
 
   return (
     <div>
