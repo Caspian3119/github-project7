@@ -10,3 +10,19 @@
   grid-gap: 2rem;
   justify-content: center;
 }
+.search{
+  margin: 1.2rem;
+}
+
+.searchForm{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  margin-left: 120px;
+}
