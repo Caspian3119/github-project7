@@ -4,7 +4,7 @@ import edit from '../FE/images/edit.png'
 import deletebtn from '../FE/images/delete.png'
 import axios from 'axios'
 
-const RecipeTileProfile = ({name,ingredients,procedure, id, editClick, viewRecipe}) => {
+const RecipeTileProfile = ({name,ingredients,procedure,description, id, editClick, viewRecipe}) => {  
   return (
     <div className={style.body}>
     <div className={style.card}>
@@ -16,8 +16,7 @@ const RecipeTileProfile = ({name,ingredients,procedure, id, editClick, viewRecip
             </h2>
             <hr className={style.cardline}/>
             <p className={style.cardDesc}>
-            The dish is normally cooked with pork or chicken and sometimes with only vegetables
-                like kangkong (water spinach) or sitaw (green beans).
+            {description}
             </p>
         </div>
             <label className={style.cardBtn} for="modal-1" onClick={() => viewRecipe(id)} >View Full Receipe</label>
@@ -40,7 +39,7 @@ const RecipeTileProfile = ({name,ingredients,procedure, id, editClick, viewRecip
             <label className={style.modalBg} for="modal-1"></label>
             <div className={style.modalInner}>
                 <label className={style.modalClose} for="modal-1"></label>
-                <h2>Chicken Adobo</h2>
+                <h2>{name}</h2>
                 <p><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Chicken_Adobo_over_rice.jpg/440px-Chicken_Adobo_over_rice.jpg'
                  alt="adobo" /></p>
                 <h2> Ingredients </h2>

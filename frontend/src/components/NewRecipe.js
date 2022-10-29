@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import style from "./NewRecipe.module.css";
 import axios from "axios"
 
-const NewRecipe = ({props, accountId}) => {
+const NewRecipe = ({accountId, hideNewRecipeForm}) => {
   const [recipe, setRecipe] = useState({
     name: "",
     description: "",
@@ -50,14 +50,18 @@ const NewRecipe = ({props, accountId}) => {
 
   const onSubmitRecipe = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/v1/recipes", recipe).then((response) => {
-      props.submit(recipe);
-    })
-  };
+    if(window.confirm('Recipe Added!')){
+      axios.post(`http://localhost:8080/api/v1/recipes/`,recipe)
+      .then((response) => {
+          window.location.reload()
+      })
+  }
+  }
 
   const cancelRecipe = (e) => {
     e.preventDefault();
-    props.hideNewRecipeForm(false);
+    hideNewRecipeForm(false);
+    
   };
 
   return (

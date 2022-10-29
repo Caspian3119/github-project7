@@ -13,6 +13,7 @@ const initialState = {
   recipes: [],
   editForm: false,
   editRecipe: [],
+  //viewRecipe:[]
 };
 
 const reducer = (state, action) => {
@@ -66,7 +67,7 @@ const reducer = (state, action) => {
     }
 
     case "DELETE-ITEM": {
-      const updatedRecipe = state.recipes.filter( (item) => {
+      const updatedRecipe = state.recipes.filter((item) => {
         return item._id !== action.payload.id;
       });
       return { ...state, recipes: updatedRecipe };
@@ -81,7 +82,6 @@ const ProfilePage = ({
   showAddRecipeForm,
   hideNewRecipeForm,
   newRecipe,
-  addRecipe,
   deleteRecipe,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -90,7 +90,7 @@ const ProfilePage = ({
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-/*
+
   useEffect(() => {
     axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
       dispatch({
@@ -99,10 +99,11 @@ const ProfilePage = ({
       });
     });
   }, []);
-*/
+
   useEffect(() => {
     const activeToken = localStorage.getItem("token");
-    axios.post("http://localhost:8080/api/v1/accounts/active", {
+    axios
+      .post("http://localhost:8080/api/v1/accounts/active", {
         activeToken: activeToken,
       })
       .then((res) => {
@@ -116,14 +117,13 @@ const ProfilePage = ({
           alert(res.data.data.message);
         }
       });
-    
-    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
-        dispatch({
-            type: "RECIPES",
-            payload: response.data,
-        });
-    })
 
+    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
+      dispatch({
+        type: "RECIPES",
+        payload: response.data,
+      });
+    });
   }, []);
 
   const handleAddRecipe = (newItem) => {
@@ -135,6 +135,7 @@ const ProfilePage = ({
 
   const handleViewRecipe = (id) => {
     dispatch({ type: "TOGGLE-RECIPE", payload: { id } });
+    console.log(id)
   };
 
   const editCurrItem = (editItem) => {
@@ -151,26 +152,30 @@ const ProfilePage = ({
 
   // SHOW RECIPE CREATED BY LOGGED IN USER //
   let userRecipe = state.recipes.filter((recipeItem) => {
-    return recipeItem.created_by === accountId
-  })
+    return recipeItem.created_by === accountId;
+  });
 
   // USER RECIPES TO BE SHOWN IN CARD UI //
-  const listItems = userRecipe.map((item, index) => (
-    //data transformation
-    <RecipeTileProfile
-      key={index}
-      id={item._id}
-      name={item.name}
-      procedure={item.procedure}
-      ingredients={item.ingredients}
-      editClick={handleEditClick}
-      viewRecipe={handleViewRecipe}
-      deleteItem={deleteItem}
-      //{...state.viewRecipe}
-    />
-  ));
-
-
+  const listItems =
+    userRecipe.length === 0 ? (
+      <p>No Posted Recipes</p>
+    ) : (
+      userRecipe.map((item, index) => (
+        //data transformation
+        <RecipeTileProfile
+          key={index}
+          id={item._id}
+          name={item.name}
+          procedure={item.procedure}
+          ingredients={item.ingredients}
+          description={item.description}
+          editClick={handleEditClick}
+          viewRecipe={handleViewRecipe}
+          deleteItem={deleteItem}
+          //{...state.viewRecipe}
+        />
+      ))
+    );
 
   return (
     <div>
@@ -203,7 +208,7 @@ const ProfilePage = ({
       ) : (
         ""
       )}
-        <button className={style.button} onClick={deleteRecipe}></button>
+      <button className={style.button} onClick={deleteRecipe}></button>
     </div>
   );
 };

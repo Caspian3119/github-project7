@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import style from "./RecipeTileProfile.module.css";
 
-const EditForm = ({_id,submit,name,ingredients,procedure,desc,cancel}) => {
+const EditForm = ({
+  _id,
+  submit,
+  name,
+  ingredients,
+  procedure,
+  desc,
+  cancel,
+}) => {
   const [item, setItem] = useState({
     // id: _id,
     name: name,
@@ -57,17 +65,16 @@ const EditForm = ({_id,submit,name,ingredients,procedure,desc,cancel}) => {
     }
   };
 
-  const onEditItem =  (e) => {
+  const onEditItem = (e) => {
     e.preventDefault();
-    try {
-        axios
-        .put(`http://localhost:3000/api/v1/recipes/edit-recipe/${_id}`, item)
+
+    if (window.confirm("Recipe has been updated!")) {
+      axios
+        .put(`http://localhost:8080/api/v1/recipes/edit-recipe/${_id}`, item)
         .then((response) => {
           submit(item);
           window.location.reload();
         });
-    } catch (err) {
-      console.log(err);
     }
   };
 
