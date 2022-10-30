@@ -177,16 +177,17 @@ const HomePage = () => {
               key={recipe._id}
               recipe={recipe}
               id={recipe._id}
+              image={recipe.image}
               name={recipe.name}
               description={recipe.description}
               ingredients={recipe.ingredients}
               procedure={recipe.procedure}
               viewRecipe={handleViewRecipe}
-              image={recipe.image}
             />
         
             {viewRecipeForm ? (
               <ViewRecipeHome
+                image={recipe.image}
                 name={recipe.name}
                 procedure={recipe.procedure}
                 ingredients={recipe.ingredients}

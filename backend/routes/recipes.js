@@ -10,6 +10,13 @@ router.get("/", (request, response) => {
   });
 });
 
+// get all recipes from user
+router.get("/:userid", (request, response) => {
+  Recipe.find({ created_by: request.params.userid }).then((data) => {
+    response.send(data);
+  });
+});
+
 //get specific recipe
 router.get("/show-recipe/:id", (request, response) => {
   Recipe.findOne({ _id: request.params.id }).then((data) => {

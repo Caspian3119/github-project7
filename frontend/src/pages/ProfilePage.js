@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState, useReducer } from "react";
 import style from "./ProfilePage.module.css";
 import Nav from "../pages/Nav";
 import profileImage from "../FE/images/profile.png";
@@ -7,8 +8,8 @@ import NewRecipe from "../components/NewRecipe";
 import RecipeTileProfile from "../components/RecipeTileProfile";
 import EditRecipeForm from "../components/EditRecipeForm";
 import ViewRecipe from "../components/ViewRecipe";
-import { useEffect, useState, useReducer } from "react";
 import axios from "axios";
+
 
 const initialState = {
   recipes: [],
@@ -98,12 +99,14 @@ const ProfilePage = ({
   newRecipe,
   deleteRecipe,
 }) => {
+
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const [accountId, setAccountId] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
 
   useEffect(() => {
     axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
@@ -201,6 +204,8 @@ const ProfilePage = ({
           <RecipeTileProfile
             key={index}
             id={item._id}
+            accountId = {accountId}
+            image={item.image}
             name={item.name}
             description={item.description}
             editClick={handleEditClick}
@@ -210,6 +215,7 @@ const ProfilePage = ({
           />
           {state.viewRecipeForm ? (
             <ViewRecipe
+              image={item.image}
               name={item.name}
               procedure={item.procedure}
               ingredients={item.ingredients}
@@ -255,6 +261,7 @@ const ProfilePage = ({
         ""
       )}
       <button className={style.button} onClick={deleteRecipe}></button>
+
     </div>
   );
 };

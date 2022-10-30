@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import style from "./NewRecipe.module.css";
 import axios from "axios";
+import Modal from 'react-modal';
 
 const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
   const [recipe, setRecipe] = useState({
@@ -11,7 +12,40 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
     created_by: accountId,
   });
 
-  const checkInput = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  const [detailsModal, setDetailsModal] = useState(false);
+  const [specialCharactersModal, setSpecialCharactersModal] = useState(false);
+
+  const openDetailsModalMessage = () => {
+    setDetailsModal(true);
+  }
+
+  const closeDetailsModalMessage = () => {
+    setDetailsModal(false);
+  }
+
+  const openSpecialCharactersModalMessage = () => {
+    setSpecialCharactersModal(true);
+  }
+
+  const closeSpecialCharactersModalMessage = () => {
+    setSpecialCharactersModal(false);
+  }
+  
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      border: "1px solid blue"
+    },
+  };
+
+  const makeExample = "@#$%^&*_+-=[]{}|<>"
+
+  const checkInput = /[@#$%^&*_+\=\[\]{}"\\|<>]+/;
 
   const onChange = (e) => {
     const inputName = e.target.name;
@@ -53,10 +87,10 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
   const onSubmitRecipe = (e) => {
     e.preventDefault();
     if (recipe.name === "" ||recipe.description === "" ||recipe.ingredients === "" ||recipe.procedure === "") {
-      alert("All input fields shall not be empty!");
+      openDetailsModalMessage();
     } 
     else if (recipe.name.match(checkInput) ||recipe.description.match(checkInput) ||recipe.ingredients.match(checkInput) ||recipe.procedure.match(checkInput)) {
-      alert("Input should not have special characters!");
+      openSpecialCharactersModalMessage();
     }
      else {
       if (window.confirm("Recipe Added!")) {
@@ -116,6 +150,47 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
           Cancel
         </button>
       </form>
+
+      <Modal
+        isOpen={detailsModal}
+        onRequestClose={closeDetailsModalMessage}
+        style={customStyles}
+        ariaHideApp={false}
+      >
+        <div>
+          <p>
+            All input fields shall not be empty!
+          </p>
+          <div>
+            <div>
+              <button onClick={closeDetailsModalMessage}>
+                <p>Go Back</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={specialCharactersModal}
+        onRequestClose={closeSpecialCharactersModalMessage}
+        style={customStyles}
+        ariaHideApp={false}
+      >
+        <div>
+          <p>
+            Input should not have special characters!
+            Example: {makeExample}
+          </p>
+          <div>
+            <div>
+              <button onClick={closeSpecialCharactersModalMessage}>
+                <p>Go Back</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
