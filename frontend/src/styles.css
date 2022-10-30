@@ -5,13 +5,13 @@
 }
 .App {
   font-family: sans-serif;
-  width: 100%;
+  width: 100vw;
   min-height: 100vh;
 }
 
 .App .navbar {
-  width: 100%;
-  min-height: 13vh;
+  width: 100vw;
+  height: 12vh;
   justify-content: space-between;
   display: flex;
   background: rgb(248, 252, 255);
@@ -28,4 +28,23 @@
 .App .navbar .nav-links>a{
   color: rgb(0, 0, 0);
   text-decoration: none;
+}
+
+@media only screen and (min-width:500px) and (max-width: 960px) {
+  .App .navbar {
+    height: 7.5;
+  }
+} 
+
+@media only screen and (min-width:961px) {
+  .App .navbar {
+    height: 9vh;
+  }
+}
+
+@media only screen and (min-width:1025px) {
+  .App .navbar {
+    width: 100vw;
+    height: 12vh;
+  }
 }

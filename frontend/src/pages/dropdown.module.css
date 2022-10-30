@@ -1,56 +1,92 @@
 .dropdown{
-    cursor: pointer;
-    height: 100px;
-    display: flex;
-    margin-top: 35px;
-    margin-bottom: 10px;
-    position: absolute;
-    right: 15px; 
+  cursor: pointer;
+  height: 100px;
+  display: flex;
+  margin-top: 35px;
+  margin-bottom: 10px;
+  position: absolute;
+  right: 15px; 
 }
 .dropdownHeader{
-    margin-top: 20px;
-    font-size: 80px;
-    color: green;
+  margin-top: 20px;
+  font-size: 80px;
+  color: green;
 }
 .dropdownList{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    font-family: 'Trocchi', serif;
-    font-size: 35px;
-    font-weight: normal;
-    position: absolute;
-    top: 100px;
-    list-style-type: none;
-    padding: 10px;
-    padding-top: 20px;
-    background-color: #f1dabfa5;
-    color: rgb(115, 193, 66);
-    border-bottom-left-radius: 10%;
-    border-bottom-right-radius: 10%;
-    width: 250px;
-    height: 250px;
-    right: 10px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-family: 'Trocchi', serif;
+  font-size: 35px;
+  font-weight: normal;
+  position: absolute;
+  top: 100px;
+  list-style-type: none;
+  padding: 10px;
+  padding-top: 20px;
+  background-color: #f1dabff3;
+  color: rgb(115, 193, 66);
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  width: 250px;
+  height: 250px;
+  right: 10px;
+  cursor: pointer;
 }
 a.dropdownLinks:after {
-	content: '';
-  position: absolute;
-  left: 10px;
-  display: inline-block;
-  height: .5em;
-  width: 80%;
-  border-bottom: 4px solid #d8d174;
-  margin-top: 10px;
-  opacity: 0;
-	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-	transition: opacity 0.40s, transform 0.80s;
-	-webkit-transform: scale(0,1);
-	transform: scale(0,1);
+content: '';
+position: absolute;
+left: 10px;
+display: inline-block;
+height: .5em;
+width: 80%;
+border-bottom: 4px solid #d8d174;
+margin-top: 10px;
+opacity: 0;
+-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+transition: opacity 0.40s, transform 0.80s;
+-webkit-transform: scale(0,1);
+transform: scale(0,1);
 }
 
 a.dropdownLinks:hover:after {
-  opacity: 1;
-	-webkit-transform: scale(1);
-	transform: scale(1);
+opacity: 1;
+-webkit-transform: scale(1);
+transform: scale(1);
 }
+
+
+@media only screen and (min-width:500px) and (max-width: 960px){
+.dropdown{
+  max-height: 3vh;
+}
+.dropdownHeader{
+  font-size: 4rem;
+  color: green;
+  margin-top: -.90rem;
+  padding-right: -.50rem;
+}
+} 
+
+@media only screen and (min-width:961px) {
+.dropdown{
+  max-height: 10vh;
+}
+.dropdownHeader{
+  font-size: 3.5rem;
+  color: green;
+  margin-top: -.99rem;
+}
+} 
+
+@media only screen and (min-width:1025px) {
+.dropdown{
+  height: 12vh;
+}
+.dropdownHeader{
+  font-size: 4.5rem;
+  color: green;
+  margin-top: -.40rem;
+
+}
+} 
