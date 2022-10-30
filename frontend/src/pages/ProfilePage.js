@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./ProfilePage.module.css";
-import Nav from "./Nav";
+import Nav from "../pages/Nav";
 import profileImage from "../FE/images/profile.png";
 import { FcPlus } from "react-icons/fc";
 import NewRecipe from "../components/NewRecipe";
@@ -80,6 +80,13 @@ const reducer = (state, action) => {
       return { ...state, recipes: updatedRecipe };
     }
 
+    case "LATEST-RECIPE": {
+      const sortedRecipes = state.recipes.sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+      return { ...state, recipes: sortedRecipes };
+    }
+
     default:
       break;
   }
@@ -133,6 +140,15 @@ const ProfilePage = ({
     });
   }, []);
 
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
+      dispatch({
+        type: "LATEST-RECIPE",
+        payload: response.data,
+      });
+    });
+  }, []);
+
   const handleAddRecipe = (newItem) => {
     dispatch({ type: "ADD-RECIPE-SUBMIT", payload: { newItem } });
   };
@@ -164,6 +180,11 @@ const ProfilePage = ({
     dispatch({ type: "DELETE-ITEM", payload: { id } });
   };
 
+  const latestRecipe = (id) => {
+    dispatch({ type: "LATEST-RECIPE", payload: { id } });
+  };
+
+
   // SHOW RECIPE CREATED BY LOGGED IN USER //
   let userRecipe = state.recipes.filter((recipeItem) => {
     return recipeItem.created_by === accountId;
@@ -185,6 +206,7 @@ const ProfilePage = ({
             editClick={handleEditClick}
             viewRecipe={handleViewRecipe}
             deleteItem={deleteItem}
+            latestRecipe={latestRecipe}
           />
           {state.viewRecipeForm ? (
             <ViewRecipe
