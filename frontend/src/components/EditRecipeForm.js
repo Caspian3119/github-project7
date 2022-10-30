@@ -8,7 +8,7 @@ const EditForm = ({
   name,
   ingredients,
   procedure,
-  desc,
+  description,
   cancel,
 }) => {
   const [item, setItem] = useState({
@@ -16,13 +16,14 @@ const EditForm = ({
     name: name,
     ingredients: ingredients,
     procedure: procedure,
-    desc: desc,
+    description: description,
   });
 
   const [valueName, setValueName] = useState(name);
   const [valueIngredients, setValueIngredients] = useState(ingredients);
   const [valueProcedure, setValueProcedure] = useState(procedure);
-  const [valueDesc, setValueDesc] = useState(desc);
+  const [valueDesc, setValueDesc] = useState(description);
+  const checkInput = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   const onChange = (e) => {
     const inputName = e.target.name;
@@ -56,7 +57,7 @@ const EditForm = ({
         setValueDesc(e.target.value);
         setItem({
           ...item,
-          desc: e.target.value,
+          description: e.target.value,
         });
         break;
 
@@ -67,14 +68,29 @@ const EditForm = ({
 
   const onEditItem = (e) => {
     e.preventDefault();
-
-    if (window.confirm("Recipe has been updated!")) {
-      axios
-        .put(`http://localhost:8080/api/v1/recipes/edit-recipe/${_id}`, item)
-        .then((response) => {
-          submit(item);
-          window.location.reload();
-        });
+    if (
+      item.name === "" ||
+      item.description === "" ||
+      item.ingredients === "" ||
+      item.procedure === ""
+    ) {
+      alert("All input fields shall not be empty!");
+    } else if (
+      item.name.match(checkInput) ||
+      item.description.match(checkInput) ||
+      item.ingredients.match(checkInput) ||
+      item.procedure.match(checkInput)
+    ) {
+      alert("Input should not have special characters!");
+    } else {
+      if (window.confirm("Recipe has been updated!")) {
+        axios
+          .put(`http://localhost:8080/api/v1/recipes/edit-recipe/${_id}`, item)
+          .then((response) => {
+            submit(item);
+            window.location.reload();
+          });
+      }
     }
   };
 

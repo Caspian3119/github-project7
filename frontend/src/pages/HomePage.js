@@ -4,7 +4,7 @@ import axios from 'axios';
 import style from './homePage.module.css';
 import Nav from './Nav';
 import RecipeTile from '../components/RecipeTile';
-
+import ViewRecipeHome from "../components/ViewRecipeHome";
 ///images///
 
 import latest from "../FE/images/icons/latest.png"
@@ -32,7 +32,8 @@ const HomePage = () => {
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
      const [filteredRecipes, setFilteredRecipes] = useState([]);
-  
+     const [viewRecipeForm, setViewRecipeForm] = useState(true);
+     const [viewRecipe, setViewRecipe] = useState([]);
      useEffect(() => {
          axios.get('http://localhost:8080/api/v1/recipes')
              .then(res => setRecipes(res.data))
@@ -56,7 +57,18 @@ const HomePage = () => {
      const updateSearch = (e) => {
          setSearch(e.target.value);
      }
- 
+
+     const handleViewRecipe = (id) => {
+      const recipe = recipes.findIndex((item) => item._id === id);
+      const currentRecipe = recipes[recipe];
+      console.log(currentRecipe)
+      setViewRecipe(currentRecipe);
+      setViewRecipeForm(true);
+    };
+  
+    const cancelViewRecipe = () => {
+      viewRecipeForm ? setViewRecipeForm(false) : setViewRecipeForm(true);
+    };
     return(
 <div>
     <Nav />
@@ -159,17 +171,33 @@ const HomePage = () => {
   <a> <img src={storyE} alt="storyA" className={style.stories} /></a>
   <a> <img src={storyF} alt="storyA" className={style.stories} /></a>
 </div>
-                {sortedRecipes.map(recipe => (
-                    <RecipeTile 
-                    key={recipe._id} 
-                    recipe={recipe}
-                    id={recipe._id}
-                    name={recipe.name}
-                    description={recipe.description}
-                    ingredients={recipe.ingredients}
-                    procedure={recipe.procedure}
-                    image={recipe.image} />
-                ))}
+{sortedRecipes.map((recipe) => (
+          <>
+            <RecipeTile
+              key={recipe._id}
+              recipe={recipe}
+              id={recipe._id}
+              name={recipe.name}
+              description={recipe.description}
+              ingredients={recipe.ingredients}
+              procedure={recipe.procedure}
+              viewRecipe={handleViewRecipe}
+              image={recipe.image}
+            />
+        
+            {viewRecipeForm ? (
+              <ViewRecipeHome
+                name={recipe.name}
+                procedure={recipe.procedure}
+                ingredients={recipe.ingredients}
+                cancel={cancelViewRecipe}
+                {...viewRecipe}
+              />
+            ) : (
+              ""
+            )}
+          </>
+        ))}
   </div>
  </div>
 </div>

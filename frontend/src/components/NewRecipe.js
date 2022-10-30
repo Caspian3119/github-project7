@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import style from "./NewRecipe.module.css";
-import axios from "axios"
+import axios from "axios";
 
-const NewRecipe = ({accountId, hideNewRecipeForm}) => {
+const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
   const [recipe, setRecipe] = useState({
     name: "",
     description: "",
@@ -10,6 +10,8 @@ const NewRecipe = ({accountId, hideNewRecipeForm}) => {
     procedure: "",
     created_by: accountId,
   });
+
+  const checkInput = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   const onChange = (e) => {
     const inputName = e.target.name;
@@ -50,18 +52,26 @@ const NewRecipe = ({accountId, hideNewRecipeForm}) => {
 
   const onSubmitRecipe = (e) => {
     e.preventDefault();
-    if(window.confirm('Recipe Added!')){
-      axios.post(`http://localhost:8080/api/v1/recipes/`,recipe)
-      .then((response) => {
-          window.location.reload()
-      })
-  }
-  }
+    if (recipe.name === "" ||recipe.description === "" ||recipe.ingredients === "" ||recipe.procedure === "") {
+      alert("All input fields shall not be empty!");
+    } 
+    else if (recipe.name.match(checkInput) ||recipe.description.match(checkInput) ||recipe.ingredients.match(checkInput) ||recipe.procedure.match(checkInput)) {
+      alert("Input should not have special characters!");
+    }
+     else {
+      if (window.confirm("Recipe Added!")) {
+        axios
+          .post(`http://localhost:8080/api/v1/recipes/`, recipe)
+          .then((response) => {
+            window.location.reload();
+          });
+      }
+    }
+  };
 
   const cancelRecipe = (e) => {
     e.preventDefault();
     hideNewRecipeForm(false);
-    
   };
 
   return (
