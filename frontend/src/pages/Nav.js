@@ -21,9 +21,6 @@ export default function Nav() {
         <img src={profile} alt="me"/>
         </Link>
         <span>
-            <img src={search} alt="search" className={style.search}/>
-        </span>
-        <span>
         <DropDown placeHolder="" className={style.dropdown} />
         </span>
       </ul>

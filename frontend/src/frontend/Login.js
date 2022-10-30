@@ -35,7 +35,8 @@ function Login() {
     }
 
     // LOGIN FUNCTION
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault()
         if (email === "" || password === "") {
             alert("All input fields shall not be empty!")
         } else {

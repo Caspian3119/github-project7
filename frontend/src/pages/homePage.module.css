@@ -109,7 +109,7 @@
 .gallery {
 display: flex;
 flex-direction: row;
-width: 75vw;
+width: 80vw;
 height: 32vh;
 grid-column: 1/4;
 border-bottom: 3px solid gray;

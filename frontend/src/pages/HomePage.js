@@ -28,76 +28,11 @@ import storyD from "../FE/images/stories/story4.png"
 import storyE from "../FE/images/stories/story5.png"
 import storyF from "../FE/images/stories/story6.png"
 
-// const HomePage = () => {
-//    const [recipes, setRecipes] = useState([]);
-//    const [search, setSearch] = useState("");
-//     const [filteredRecipes, setFilteredRecipes] = useState([]);
-
-
-
-//     useEffect(() => {
-//         axios.get('http://localhost:8080/api/v1/recipes')
-//             .then(res => setRecipes(res.data))
-//             .catch(err => console.log(err));
-//     }, []);
-
-//     useEffect(() => {
-//         setFilteredRecipes(
-//             recipes.filter(recipe => {
-//                 return recipe.name.toLowerCase().includes(search.toLowerCase());
-//             })
-//         );
-//     }
-//     , [search, recipes]);
- 
-
-//     const sortedRecipes = filteredRecipes.sort((a, b) => {
-//         return new Date(b.created_at) - new Date(a.created_at);
-//     }); 
-
-//     const updateSearch = (e) => {
-//         setSearch(e.target.value);
-//     }
-
-//     return (
-//         <div className={style.homePage}>
-//             <Nav />
-//             <div className={style.search}>
-//                 <form className={style.searchForm}>
-//                     <input className={style.search} type="text" value={search} onChange={updateSearch} />
-//                     <button type="submit">Search</button>
-//                 </form>
-//             </div>
-//             <div className={style.body}>
-//                 {sortedRecipes.map(recipe => (
-//                     <RecipeTile 
-//                     key={recipe._id} 
-//                     recipe={recipe}
-//                     id={recipe._id}
-//                     name={recipe.name}
-//                     description={recipe.description}
-//                     ingredients={recipe.ingredients}
-//                     procedure={recipe.procedure}
-//                     image={recipe.image} />
-//                 ))}
-//             </div>
-//         </div>
-//     )
-// }
-
-// export default HomePage;
-
-
-
-
-
 const HomePage = () => {
     const [recipes, setRecipes] = useState([]);
     const [search, setSearch] = useState("");
      const [filteredRecipes, setFilteredRecipes] = useState([]);
- 
- 
- 
+  
      useEffect(() => {
          axios.get('http://localhost:8080/api/v1/recipes')
              .then(res => setRecipes(res.data))
@@ -205,7 +140,7 @@ const HomePage = () => {
         Vegan Sopas </a>
         <a href="#"> see more... </a>
       </div>
-    </div>
+    </div> 
     
   </div>
   <div className={style.main}>
@@ -223,9 +158,7 @@ const HomePage = () => {
   <a> <img src={storyD} alt="storyA" className={style.stories} /></a>
   <a> <img src={storyE} alt="storyA" className={style.stories} /></a>
   <a> <img src={storyF} alt="storyA" className={style.stories} /></a>
-
-    </div>
-  <div className={style.body}>
+</div>
                 {sortedRecipes.map(recipe => (
                     <RecipeTile 
                     key={recipe._id} 
@@ -237,9 +170,8 @@ const HomePage = () => {
                     procedure={recipe.procedure}
                     image={recipe.image} />
                 ))}
-                </div>
-        </div>
-</div>
+  </div>
+ </div>
 </div>
 )
 }

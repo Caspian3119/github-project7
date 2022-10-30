@@ -1,28 +1,62 @@
 .logo{
-    height: 100px;
-    width: 150px;
+    height: 10vh;
+    max-width: 15vw;
     display: flex;
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin-bottom: 5%;
+    margin-top: 2%;
     position: absolute;
-    left: 30px;
-
-}
-.search{
-    height: 100px;
-    width: max-content 200px;
-    display: flex;
-    margin-bottom: 10px;
-    margin-top: 25px;
-    position: absolute;
-    right: 170px;
+    left: 2vw;
 }
 .profile{
-    height: 100px;
-    width: 100px;
+    height: 10vh;
+    width: 10vw;
     display: flex;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: 2%;
+    margin-bottom: 5%;
     position: absolute;
-    right: 60px;
+    right: 1vw;
 }
+
+
+@media only screen and (min-width:500px) and (max-width: 960px){
+    .logo{
+        max-height: 6.5vh;
+        max-width: 6.5vw;
+        margin-top: 2.5vh;
+
+    }
+    .profile{
+        max-height: 6.5vh;
+        max-height: 6.5vh;
+        right: 3vw;
+        margin-top: 2.5vh;
+    }
+  }
+
+@media only screen and (min-width:961px) {
+    .logo{
+        max-height: 7.5vh;
+        max-width: 7.5vw;
+        margin-top: 1vh;
+    }
+    .profile{
+        max-height: 7.5vh;
+        max-width: 7.5vw;
+        left: 89vw;
+        margin-top: 1vh;
+    }
+  } 
+
+@media only screen and (min-width:1025px) {
+    .logo{
+        min-height: 9vh;
+        min-width: 8vw;
+        margin-top: 1%;
+
+    }
+    .profile{
+        min-height: 8vh;
+        min-width: 8vw;
+        margin-top: 1%;
+    }
+} 
