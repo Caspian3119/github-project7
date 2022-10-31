@@ -44,3 +44,23 @@
   background-color: #e4a473;
   color: white;
 }
+
+.modalText {
+  color: rgb(255, 4, 0);
+  padding-top: 2vh;
+  padding-bottom: 6vh;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.error{
+  height: 7vh;
+  width: 7vh;
+}
+.btnModal{
+  width: 30vw;
+  height: 5vh;
+  background-color: rgb(255, 58, 58);
+  color: aliceblue;
+  margin-left: 2.5vw;
+}

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import style from "./NewRecipe.module.css";
 import axios from "axios";
 import Modal from 'react-modal';
+import error from "../FE/images/Error.png"
+
 
 const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
   const [recipe, setRecipe] = useState({
@@ -32,6 +34,14 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
   }
   
   const customStyles = {
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(255, 255, 255, 0.75)'
+    },
     content: {
       top: '50%',
       left: '50%',
@@ -39,9 +49,16 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      border: "1px solid blue"
+      border: "1px solid red",
+      height: "40vh", 
+      width: "40vw"
     },
   };
+
+
+
+
+
 
   const makeExample = "@#$%^&*_+-=[]{}|<>"
 
@@ -156,14 +173,19 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
         onRequestClose={closeDetailsModalMessage}
         style={customStyles}
         ariaHideApp={false}
+        className={style.modal}
       >
         <div>
-          <p>
-            All input fields shall not be empty!
-          </p>
+          <div className={style.modalText}>
+            <img src={error} alt="error" className={style.error} />
+            <br></br>
+            <h3> Empty fields </h3>
+            <br></br>
+            <p> Please make sure to complete all fields</p>
+          </div>
           <div>
             <div>
-              <button onClick={closeDetailsModalMessage}>
+              <button onClick={closeDetailsModalMessage} className={style.btnModal}>
                 <p>Go Back</p>
               </button>
             </div>
@@ -178,13 +200,17 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
         ariaHideApp={false}
       >
         <div>
-          <p>
-            Input should not have special characters!
-            Example: {makeExample}
-          </p>
+          <div className={style.modalText}>
+            <img src={error} alt="error" className={style.error} />
+            <br></br>
+            <h3> Special Characters </h3>
+            <br></br>
+            <p> Input should not have special characters!
+            Example: {makeExample}</p>
+          </div>
           <div>
             <div>
-              <button onClick={closeSpecialCharactersModalMessage}>
+              <button onClick={closeDetailsModalMessage} className={style.btnModal}>
                 <p>Go Back</p>
               </button>
             </div>
