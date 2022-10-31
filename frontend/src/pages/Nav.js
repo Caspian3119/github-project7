@@ -4,7 +4,6 @@ import style from './Nav.module.css'
 import { Link } from "react-router-dom";
 import DropDown from "./Dropdown"
 import logo from "../FE/images/HAPAG.png"
-import search from "../FE/images/search.png"
 import profile from "../FE/images/profile.png"
 
 export default function Nav() {

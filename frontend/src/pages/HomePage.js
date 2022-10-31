@@ -158,8 +158,8 @@ const HomePage = () => {
   <div className={style.main}>
   <div className={style.search}>
                 <form className={style.searchForm}>
-                    <input className={style.search} type="text" value={search} onChange={updateSearch} />
-                    <button type="submit">Search</button>
+                <button type="submit" className={style.searchBtn}><span>Search</span></button>
+                <input className={style.search} type="text" value={search} onChange={updateSearch} />
                 </form>
             </div>
   <div className={style.gallery}>

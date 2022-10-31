@@ -45,7 +45,7 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
 
   const makeExample = "@#$%^&*_+-=[]{}|<>"
 
-  const checkInput = /[@#$%^&*_+\=\[\]{}"\\|<>]+/;
+  const checkInput = /!!/;
 
   const onChange = (e) => {
     const inputName = e.target.name;

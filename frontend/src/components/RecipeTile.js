@@ -17,7 +17,7 @@ const RecipeTile = ({ id, image, viewRecipe, name, description }) => {
         <div className={style.body}>
           <div className={style.card}>
             <div className={style.cardBody}>
-              <IKImage path={image}/>
+              <IKImage path={image} className={style.cardImage}/>
               <h2 className={style.cardTitle}>{name}</h2>
               <hr className={style.cardline} />
               <p className={style.cardDesc}>{description}</p>

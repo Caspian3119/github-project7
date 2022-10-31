@@ -139,6 +139,7 @@ const EditForm = ({
         <label className={style.modalBg} htmlFor="modal-edit"></label>
         <div className={style.modalInner}>
           <h2>Edit Recipe</h2>
+          <br></br>
           <form>
             <label>Recipe Name:</label> <br />
             <br />

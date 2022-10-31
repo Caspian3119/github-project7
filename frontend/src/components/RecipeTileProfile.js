@@ -84,8 +84,8 @@ const RecipeTileProfile = ({
         <div className={style.card}>
           <div>
             <div className={style.cardBody}>
-              <IKImage path={image}/>
-              <IKUpload onSuccess={(res) => onSuccess(res, id)} onError={(res) => onError(res, id)} />
+              <IKImage path={image} className={style.cardImage}/>
+              <IKUpload onSuccess={(res) => onSuccess(res, id)} onError={(res) => onError(res, id) } className={style.cardUpload}/>
               <h2 className={style.cardTitle}>{name}</h2>
               <hr className={style.cardline} />
               <p className={style.cardDesc}>{description}</p>

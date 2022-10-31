@@ -250,6 +250,7 @@ const ProfilePage = ({
         )}
       </div>
       <hr />
+      <div className={style.main}>
       {listItems}
       {state.editForm ? (
         <EditRecipeForm
@@ -260,8 +261,7 @@ const ProfilePage = ({
       ) : (
         ""
       )}
-      <button className={style.button} onClick={deleteRecipe}></button>
-
+      </div>
     </div>
   );
 };
