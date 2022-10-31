@@ -90,32 +90,6 @@ router.get("/show-account/:id", (request, response) => {
   });
 });
 
-
-/*
-router.post("/", async (request, response) => {
-  try {
-    await _validateNewUser(request);
-
-    const date = new Date().toLocaleString();
-
-    const newAccount = new Account(request.body);
-    newAccount.created_at = date;
-
-    await newAccount.save().then((account) => {
-      if (account._id) {
-        response.status(201).send({account: account, message: "Account Successfully Created"});
-      } else {
-        response.status(400).send({error: "Request failed"});
-      }
-    });
-  } catch (exception) {
-    response.status(400).send({error: exception.message});
-  }
-});
-*/
-
-// edit new account
-
 router.put("/edit-account/:id", (request, response) => {
   let error = new Error('AccountUpdateException');
   error.message = 'Error in updating account';
