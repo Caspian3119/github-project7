@@ -64,3 +64,21 @@
   color: aliceblue;
   margin-left: 2.5vw;
 }
+
+.textAreas1 {
+  width: 96%;
+  border: 1px solid gray;
+  margin: 2% 2% 0%;
+}
+
+.textAreas2 {
+  width: 96%;
+  border: 1px solid gray;
+  margin: 2% 2% 0%;
+}
+
+.textAreas3 {
+  width: 96%;
+  border: 1px solid gray;
+  margin: 2% 2% 1%;
+}

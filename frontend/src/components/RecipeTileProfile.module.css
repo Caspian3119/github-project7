@@ -183,3 +183,38 @@ ol{
   padding-left: 1.5%;
   font-size: smaller;
 }
+
+/* .editButtonsContainer {
+  justify-content: center;
+} */
+
+.editButtons1 {
+  border: 2px solid #f69d5a;
+  background-color: white;
+  display: block;
+  width: 100%;
+}
+
+.editButtons2 {
+  border: 2px solid #f69d5a;
+  background-color: white;
+  display: block;
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.editButtons1:hover {
+  background-color: #e4a473;
+  color: white;
+}
+
+.editButtons2:hover {
+  background-color: #e4a473;
+  color: white;
+}
+
+.textAreas {
+  width: 100%;
+  border: 1px solid gray;
+}

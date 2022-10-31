@@ -128,35 +128,43 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
   return (
     <div>
       <form className={style.form}>
-        <input
+        {/* <input */}
+        <textarea
+          className={style.textAreas1}
           name="recipeName"
           type="text"
           placeholder="Recipe Name:"
-          className={style.input}
+          // className={style.input}
           onChange={onChange}
         />
         <br />
-        <input
+        {/* <input */}
+        <textarea
+          className={style.textAreas2}
           name="description"
           type="text"
           placeholder="Description:"
-          className={style.input}
+          // {/* className={style.input} */}
           onChange={onChange}
         />
         <br />
-        <input
+        {/* <input */}
+        <textarea
+          className={style.textAreas2}
           name="ingredients"
           type="text"
           placeholder="Ingredients:"
-          className={style.input}
+          // {/* className={style.input} */}
           onChange={onChange}
         />
         <br />
-        <input
+        {/* <input */}
+        <textarea
+          className={style.textAreas3}
           name="procedure"
           type="text"
           onChange={onChange}
-          className={style.input}
+          // className={style.input}
           placeholder="Procedure:"
         />
         <br />

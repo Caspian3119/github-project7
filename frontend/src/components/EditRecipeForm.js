@@ -24,7 +24,7 @@ const EditForm = ({
   const [valueIngredients, setValueIngredients] = useState(ingredients);
   const [valueProcedure, setValueProcedure] = useState(procedure);
   const [valueDesc, setValueDesc] = useState(description);
-  const checkInput = /[@#$%^&*_+\-=\[\]{}\\|<>]+/;
+  const checkInput = /[@#$%^&*_+\=\[\]{}\\|<>]+/;
   const [detailsModal, setDetailsModal] = useState(false);
   const [specialCharactersModal, setSpecialCharactersModal] = useState(false);
 
@@ -143,7 +143,8 @@ const EditForm = ({
           <form>
             <label>Recipe Name:</label> <br />
             <br />
-            <input
+            <textarea
+              className={style.textAreas}
               type="text"
               name="name"
               value={valueName}
@@ -153,7 +154,8 @@ const EditForm = ({
             <br />
             <label>Recipe Description:</label> <br />
             <br />
-            <input
+            <textarea
+              className={style.textAreas}
               type="text"
               name="desc"
               value={valueDesc}
@@ -161,13 +163,14 @@ const EditForm = ({
             />
             <br />
             <br />
-            <label>Recipe Image:</label> <br />
+            {/* <label>Recipe Image:</label> <br />
             <br />
             <input type="text" name="rimage" /> <br />
-            <br />
+            <br /> */}
             <label>Ingredients:</label> <br />
             <br />
-            <input
+            <textarea
+              className={style.textAreas}
               type="text"
               name="ingredients"
               value={valueIngredients}
@@ -177,7 +180,8 @@ const EditForm = ({
             <br />
             <label>Procedure:</label> <br />
             <br />
-            <input
+            <textarea
+              className={style.textAreas}
               type="text"
               name="procedure"
               value={valueProcedure}
@@ -185,8 +189,8 @@ const EditForm = ({
             />
             <br />
             <br />
-            <button onClick={onEditItem}> Update Recipe</button>
-            <button onClick={onCancelEdit}>Cancel</button>
+            <button className={style.editButtons1} onClick={onEditItem}> Update Recipe</button>
+            <button className={style.editButtons2} onClick={onCancelEdit}>Cancel</button>
           </form>
         </div>
       </div>
