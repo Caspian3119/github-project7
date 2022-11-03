@@ -19,7 +19,7 @@ export default function Dropdown({ placeHolder }) {
   const handleLogout = (e) => {
     setSelected(e.target.value);
     localStorage.removeItem('token');
-    navigate('/login');
+    navigate('/');
     window.location.reload()
     setIsOpen(false);
   }
