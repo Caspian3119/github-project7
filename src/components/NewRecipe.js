@@ -112,7 +112,7 @@ const NewRecipe = ({ accountId, hideNewRecipeForm }) => {
      else {
       if (window.confirm("Recipe Added!")) {
         axios
-          .post(`http://localhost:8080/api/v1/recipes/`, recipe)
+          .post(`https://project-7-back-end.herokuapp.com/api/v1/recipes/`, recipe)
           .then((response) => {
             window.location.reload();
           });

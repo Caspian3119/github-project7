@@ -118,7 +118,7 @@ const EditForm = ({
     } else {
       // if (window.confirm("Recipe has been updated!")) {
         axios
-          .put(`http://localhost:8080/api/v1/recipes/edit-recipe/${_id}`, item)
+          .put(`https://project-7-back-end.herokuapp.com/api/v1/recipes/edit-recipe/${_id}`, item)
           .then((response) => {
             submit(item);
             window.location.reload();

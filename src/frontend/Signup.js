@@ -57,7 +57,7 @@ function Signup() {
       if (newUserObj.first_name === "" || newUserObj.last_name === "" || newUserObj.email === "" || newUserObj.password === "") {
         openDetailsModalMessage();
       } else {
-          axios.post("http://localhost:8080/api/v1/accounts", newUserObj).then((res) => {
+          axios.post("https://project-7-back-end.herokuapp.com/api/v1/accounts", newUserObj).then((res) => {
               if (res.data.success === true) {
                 console.log("Success!");
                 // navigate("/login");

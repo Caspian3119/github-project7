@@ -72,7 +72,7 @@ function Login() {
         if (email === "" || password === "") {
             openDetailsModalMessage();
         } else {
-            axios.post("http://localhost:8080/api/v1/accounts/login", {email: email, password: password }).then((res) => {
+            axios.post("https://project-7-back-end.herokuapp.com/api/v1/accounts/login", {email: email, password: password }).then((res) => {
                 if (res.data.success) {
                     const token = res.data.jwttoken
                     localStorage.setItem('token', token);

@@ -109,7 +109,7 @@ const ProfilePage = ({
 
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
+    axios.get("https://project-7-back-end.herokuapp.com/api/v1/recipes").then((response) => {
       dispatch({
         type: "RECIPES",
         payload: response.data,
@@ -120,7 +120,7 @@ const ProfilePage = ({
   useEffect(() => {
     const activeToken = localStorage.getItem("token");
     axios
-      .post("http://localhost:8080/api/v1/accounts/active", {
+      .post("https://project-7-back-end.herokuapp.com/api/v1/accounts/active", {
         activeToken: activeToken,
       })
       .then((res) => {
@@ -135,7 +135,7 @@ const ProfilePage = ({
         }
       });
 
-    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
+    axios.get("https://project-7-back-end.herokuapp.com/api/v1/recipes").then((response) => {
       dispatch({
         type: "RECIPES",
         payload: response.data,
@@ -144,7 +144,7 @@ const ProfilePage = ({
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/v1/recipes").then((response) => {
+    axios.get("https://project-7-back-end.herokuapp.com/api/v1/recipes").then((response) => {
       dispatch({
         type: "LATEST-RECIPE",
         payload: response.data,

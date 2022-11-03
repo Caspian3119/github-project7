@@ -43,7 +43,7 @@ const RecipeTileProfile = ({
   };
 
   useEffect (() => {
-    axios.get(`http://localhost:8080/api/v1/recipes/${accountId}`).then((response) => {
+    axios.get(`https://project-7-back-end.herokuapp.com/api/v1/recipes/${accountId}`).then((response) => {
       if (response.data.length > 0) {
         setRecipes(response.data);
       }
@@ -55,8 +55,8 @@ const RecipeTileProfile = ({
       image: res.filePath
     }
 
-    axios.put(`http://localhost:8080/api/v1/recipes/edit-recipe/${id}`, updateDetails).then((response) => {
-      axios.get(`http://localhost:8080/api/v1/recipes/${accountId}`).then((response) => {
+    axios.put(`https://project-7-back-end.herokuapp.com/api/v1/recipes/edit-recipe/${id}`, updateDetails).then((response) => {
+      axios.get(`https://project-7-back-end.herokuapp.com/api/v1/recipes/${accountId}`).then((response) => {
         if (response.data.length > 0) {
           setRecipes(response.data);
           window.location.reload();

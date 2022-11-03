@@ -35,7 +35,7 @@ const HomePage = () => {
      const [viewRecipeForm, setViewRecipeForm] = useState(true);
      const [viewRecipe, setViewRecipe] = useState([]);
      useEffect(() => {
-         axios.get('http://localhost:8080/api/v1/recipes')
+         axios.get('https://project-7-back-end.herokuapp.com/api/v1/recipes')
              .then(res => setRecipes(res.data))
              .catch(err => console.log(err));
      }, []);
